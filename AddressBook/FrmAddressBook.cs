@@ -32,13 +32,12 @@ namespace AddressBook
         {
             FrmTambahData ftm = new FrmTambahData(true);
             ftm.Run(ftm);
-            FrmAddressBook_Load(null, null);
+            FrmAddressBook_Load(null, null);    
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             AddressController controller = new AddressController();
-
             FrmTambahData ftm = new FrmTambahData(false, people(temp));
             ftm.Run(ftm);
             FrmAddressBook_Load(null, null);
@@ -72,6 +71,7 @@ namespace AddressBook
                 FrmAddressBook_Load(null, null);
             }
         }
+
         private People people(People p)
         {
             p.Nama = dgvData.CurrentRow.Cells[0].Value.ToString();

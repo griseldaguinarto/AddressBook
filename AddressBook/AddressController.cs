@@ -65,8 +65,6 @@ namespace AddressBook
             }
         }
 
-
-
         public void HapusData(People p, int rowIndex, DataGridView dgvData)
         {
             p.Nama = dgvData.CurrentRow.Cells[0].Value.ToString();
@@ -91,11 +89,10 @@ namespace AddressBook
                 {
                     for (int i = 0; i < line.Length; i++)
                     {
-                        if (line[i] != $"{p.Nama};{p.Alamat};{p.Kota};{p.NoHP};{p.Tanggal};{p.Email}")
+                        if (line[i] != $"{p.Nama};{p.Alamat};{p.Kota};{p.NoHP};{p.Tanggal.ToShortDateString()};{p.Email}")
                         {
                             writer.WriteLine(line[i]);
                         }
-
                     }
                 }
             }
@@ -109,7 +106,7 @@ namespace AddressBook
                 {
                     using (StreamWriter writer = new StreamWriter(fs))
                     {
-                        writer.WriteLine($"{p.Nama};{p.Alamat};{p.Kota};{p.NoHP};{p.Tanggal};{p.Email}");
+                        writer.WriteLine($"{p.Nama};{p.Alamat};{p.Kota};{p.NoHP};{p.Tanggal.ToShortDateString()};{p.Email}");
                     }
                 }
             }
@@ -123,11 +120,9 @@ namespace AddressBook
                     {
                         for (int i = 0; i < line.Length; i++)
                         {
-                            MessageBox.Show(line[i]);
-                            MessageBox.Show($"{p.Nama};{p.Alamat};{p.Kota};{p.NoHP};{p.Tanggal};{p.Email}");
-                            if (line[i] == $"{temp.Nama};{temp.Alamat};{temp.Kota};{temp.NoHP};{temp.Tanggal};{temp.Email}")
+                            if (line[i] == $"{temp.Nama};{temp.Alamat};{temp.Kota};{temp.NoHP};{temp.Tanggal.ToShortDateString()};{temp.Email}")
                             {
-                                writer.WriteLine($"{p.Nama};{p.Alamat};{p.Kota};{p.NoHP};{p.Tanggal};{p.Email}");
+                                writer.WriteLine($"{p.Nama};{p.Alamat};{p.Kota};{p.NoHP};{p.Tanggal.ToShortDateString()};{p.Email}");
                             }
                             else
                             {
@@ -137,6 +132,11 @@ namespace AddressBook
                     }
                 }
             }
+        }
+
+        public void FilterData()
+        {
+
         }
 
     }

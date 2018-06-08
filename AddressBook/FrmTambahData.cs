@@ -21,7 +21,7 @@ namespace AddressBook
         People ppl = new People();
         People temp = new People();
 
-        List<People> list = new List<People>();
+       // List<People> list = new List<People>();
 
         public bool Run(FrmTambahData form)
         {
@@ -79,7 +79,6 @@ namespace AddressBook
             {
                 try
                 {
- 
                     AddressController controller = new AddressController();
                     controller.SaveData(_addMode, people(ppl), temp);
                     _result = true;
