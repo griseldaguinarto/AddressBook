@@ -51,20 +51,11 @@ namespace AddressBook
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            dgvData.Rows.Clear();
-            string[] line = File.ReadAllLines("addressbook.csv");
-
+            AddressController controller = new AddressController();
+            string[] data = { txtNama.Text, txtAlamat.Text, txtKota.Text, txtNoHp.Text, txtTglLahir.Text, txtEmail.Text };
             if (txtNama.Text != "" || txtAlamat.Text != "" || txtKota.Text != "" || txtNoHp.Text != "" || txtTglLahir.Text != "" || txtEmail.Text != "")
             {
-                foreach (string item in line)
-                {
-                    string[] arrItem = item.Split(';');
-                    if (arrItem[0].Contains(txtNama.Text) && arrItem[1].Contains(txtAlamat.Text) && arrItem[2].Contains(txtKota.Text) && arrItem[3].Contains(txtNoHp.Text) && arrItem[4].Contains(txtTglLahir.Text) && arrItem[5].Contains(txtEmail.Text))
-                    {
-                        this.dgvData.Rows.Add(new string[] { arrItem[0], arrItem[1], arrItem[2], arrItem[3], arrItem[4], arrItem[5] });
-                    }
-                    this.lblBanyakRecordData.Text = $"{this.dgvData.Rows.Count.ToString("n0")} Record data.";
-                }
+                controller.FilterData(dgvData, lblBanyakRecordData, data);
             }
             else
             {

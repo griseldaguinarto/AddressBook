@@ -134,11 +134,21 @@ namespace AddressBook
             }
         }
 
-        public void FilterData()
+        public void FilterData(DataGridView dgvData, Label lbl, string[] data)
         {
+            dgvData.Rows.Clear();
+            string[] line = File.ReadAllLines("addressbook.csv");
 
+            foreach (string item in line)
+            {
+                    string[] arrItem = item.Split(';');
+                    if (arrItem[0].Contains(data[0]) && arrItem[1].Contains(data[1]) && arrItem[2].Contains(data[2]) && arrItem[3].Contains(data[3]) && arrItem[4].Contains(data[4]) && arrItem[5].Contains(data[5]))
+                    {
+                        dgvData.Rows.Add(new string[] { arrItem[0], arrItem[1], arrItem[2], arrItem[3], arrItem[4], arrItem[5] });
+                    }
+                    lbl.Text = $"{dgvData.Rows.Count.ToString("n0")} Record data.";               
+            }
         }
-
     }
 }
 
